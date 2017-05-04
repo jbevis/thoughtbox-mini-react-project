@@ -5,10 +5,28 @@ import { ThoughtList } from './thoughtList.js';
 
 describe('ThoughtList', () => {
 
-  it.skip('has a thoughtList class field', () => {
+  it('has a thoughtList class field', () => {
+    const mockedData = [{title: 'abc', body: 'def'}, {title: 'ghi', body: 'jkl'}]
+    const wrapper = mount(<ThoughtList thoughtList = {mockedData}/>);
+    const found = wrapper.find('.thoughtList')
+
+    expect(found.length).toEqual(1)
   });
 
-  it.skip('has multiple ThoughtCard class fields', () => {
+  it('has multiple ThoughtCard class fields', () => {
+    const mockedData = [{title: 'abc', body: 'def'}, {title: 'ghi', body: 'jkl'}]
+    const wrapper = mount(<ThoughtList thoughtList = {mockedData}/>);
+    const found = wrapper.find('.thoughtCard');
+
+    expect(found.length).toEqual(2);
   });
+
+  it('does not display any cards when no thoughts exist', () => {
+    const mockedData = [];
+    const wrapper = mount(<ThoughtList thoughtList={mockedData} />);
+    const found = wrapper.find('.thoughtCard');
+
+    expect(found.length).toEqual(0)
+  })
 
 });
